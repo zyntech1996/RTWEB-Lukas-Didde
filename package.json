@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "ejs": "^2.7.4",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "install": "^0.13.0"
   },
   "devDependencies": {
     "request": "^2.81.0",
