@@ -27,7 +27,7 @@ $(document).ready( function() {
 		gameIsRunning = false;
 		enterBtn.disabled = true;
         
-        $.getJSON( "highscores.json", function( data ) {
+        $.getJSON( "./highscores.json", function( data ) {
             console.log( 'the result:' , data);
             $('#status').append('<br>'+JSON.stringify(data));
             
