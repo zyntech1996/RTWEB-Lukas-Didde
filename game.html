@@ -1,0 +1,128 @@
+<html>
+<head>
+
+<style>
+	#status {
+	height: 150px;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+//Notes for PF assignment Gebelebe debe
+//Different attack styles, each attack style damage depends on the target. (Create new function instead of current switch) Add critical strike double damage.
+//More enemies with different attributes. Weakness (e.g. crush, slash or stab), HP, damage and exp for a kill. 
+//Room definition which includes: roomname, items (Keys, doors etc), 1-2 different enemies (1 enemy each room, diversity), distance (using tree format) - Json format
+//Change player state to a json format including: HP, EXP, Damage, lvl and inventory. 
+//Chat system firstly just single player communication.
+//Maybe implement bootstrap for structure
+//Login system using json as database
+//Json example
+/*
+{
+	"first_room": {
+		"name": "Candy Kingdom",
+		"desc": "The First Room",
+		"roomid": 1,
+		"npcnumber": 1
+	}
+}
+*/
+//test test
+
+
+window.addEventListener('load', function() {
+
+// initial state of the game
+let state = {hp: 100, xp: 0, score: 0};
+
+
+let gameIsRunning = true;
+
+// the display that will show what happens
+const status = $('#status');
+status.innerHTML +='Your status is now: ' + JSON.stringify(state);
+				//`your hp is ${state.hp}, and ...`;
+
+const enterBtn = $('#enterBtn');	
+const userInput = $('#userInput');		
+
+function quit(){
+	status.text('You logged out!'+ '</br>');
+	status.innerHTML += 'HighScore: ...' + state.score; // to do
+	gameIsRunning = false;
+	enterBtn.disabled = true;
+}
+
+enterBtn.click(function(){
+	status.innerHTML = 'Your status is now: ' + JSON.stringify(state);
+	
+	switch( userInput.value.toUpperCase() ){
+		case 'QUIT':{
+			quit();
+		} break;
+		case 'SEARCH':{
+			let dice = Math.floor(Math.random()*6)+1;
+			if (dice<=3){
+				status.innerHTML += '<br/>you found something...';
+				dice = Math.floor(Math.random()*6)+1;
+				if (dice==1){
+					status.innerHTML += '<br/>... a rosted chicken!';
+					state.hp += Math.floor(Math.random()*6)+1;
+				}
+				if (dice==2){
+					status.innerHTML += '<br/>... some coins!';
+					state.score += Math.floor(Math.random()*6)+1;
+					state.xp += Math.floor(Math.random()*6)+1;
+				}
+				if (dice==3){
+					status.innerHTML += '<br/>... poisonous mushroom!';
+					state.hp -= Math.floor(Math.random()*6)+1;
+					state.xp += 1;
+				}
+			} else {
+				status.innerHTML += '<br/>you found nothing.';
+			}
+		} break;
+		case 'KILL':{
+			let dice = Math.floor(Math.random()*6)+1;
+			if (dice<=2){
+				status.innerHTML += '<br/>you killed a monster!';
+				state.hp -= Math.floor(Math.random()*6)+1;
+				state.xp += Math.floor(Math.random()*6)+1;
+				state.score += Math.floor(Math.random()*2);
+			} else {
+				status.innerHTML += '<br/>you tried to kill a monster... no luck!';
+			}
+		} break;
+		default: {
+			status.innerHTML += '<br/>...command not recognized...';
+		}
+	}
+});
+
+});
+</script>
+
+<title>Simple Game</title>
+</head>
+<body>
+	<h1>Simple Game</h1>
+	<p>
+
+		<p><h2>Situation</h2>
+		<div id="status">...</div>
+		</p>
+
+		<hr/>	
+
+		<b>What do you want to do? (search/kill/quit)</b>
+		<br/>
+		<input type="text" id="userInput"></input>
+		<button type="button" id="enterBtn">ENTER</button>
+
+	</p>
+	
+</body>
+</html>	
