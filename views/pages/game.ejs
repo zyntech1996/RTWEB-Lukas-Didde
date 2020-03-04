@@ -1,147 +1,38 @@
 <html>
+
 <head>
-
-
-<style>
-#status {
-	height: 150px;
-}
-</style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-//Notes for PF assignment
-//Different attack styles, each attack style damage depends on the target
-//More enemies with different attributes. Weakness (e.g. crush, slash or stab), HP, damage and exp for a kill. 
-//Room definition which includes: roomname, items (Keys, doors etc), 1-2 different enemies (1 enemy each room, diversity), distance (using tree format) - Json format
-//Change player state to a json format including: HP, EXP, Damage, lvl and inventory. 
-//Chat system firstly just single player communication.
-//Maybe implement bootstrap for structure
-//Login system using json as database
-//Json example
-/*
-{
-	"first_room": {
-		"name": "Candy Kingdom",
-		"desc": "The First Room",
-		"roomid": 1,
-		"npcnumber": 1
-	}
-}
-*/ </script>
-
-<script>
-
-$(document).ready( function() {    
-    let playerName = prompt('Please player, enter you name:','Andrea666');
-
-	// initial state of the game
-	let state = {hp: 100, xp: 0, score: 0};
-	
-	let gameIsRunning = true;
-	
-	// the display that will show what happens
-	$('#status').html( 'Initial status: ' + JSON.stringify(state) );	
-	
-	function quit(){
-		$('#status').html( 'You logged out! ' +
-							'HighScore: ...' + state.score );
-		gameIsRunning = false;
-		enterBtn.disabled = true;
-        
-        $.getJSON( "./highscores.json", function( data ) {
-            console.log( 'the result:' , data);
-            $('#status').append('<br>'+JSON.stringify(data));
-            
-            let scoreObj = data.filter( (element)=> element.username == playerName);
-            let scoreValue = 0;
-            if (scoreObj.length>=1){
-                scoreValue = scoreObj[0].bestScore;
-            }            
-            console.log( scoreObj , scoreObj.length , scoreValue);
-            if (state.score > scoreValue){
-                alert(`Congratulations you just surpassed your previous highscore!
-\n
-old = ${scoreValue} ; new = ${state.score}`
-);
-            }
-        })
-	}
-	
-	//$('#enterBtn').on('click', function(){
-	$('#enterBtn').click( ()=>{
-		let text = `Player ${playerName}: your status is now ${JSON.stringify(state)}`;
-		
-		switch( $('#userInput').val().toUpperCase() ){
-			case 'QUIT':{
-				quit();
-				return;
-			} break;
-			case 'SEARCH':{
-				let dice = Math.floor(Math.random()*6)+1;
-				if (dice<=3){
-					text += '<br/>you found something...';
-					dice = Math.floor(Math.random()*6)+1;
-					if (dice==1){
-						text += '<br/>... a rosted chicken!';
-						state.hp += Math.floor(Math.random()*6)+1;
-					}
-					if (dice==2){
-						text += '<br/>... some coins!';
-						state.score += Math.floor(Math.random()*6)+1;
-						state.xp += Math.floor(Math.random()*6)+1;
-					}
-					if (dice==3){
-						text += '<br/>... poisonous mushroom!';
-						state.hp -= Math.floor(Math.random()*6)+1;
-						state.xp += 1;
-					}
-				} else {
-					text += '<br/>you found nothing.';
-				}
-			} break;
-			case 'KILL':{
-				let dice = Math.floor(Math.random()*6)+1;
-				if (dice<=2){
-					text += '<br/>you killed a monster!';
-					state.hp -= Math.floor(Math.random()*6)+1;
-					state.xp += Math.floor(Math.random()*6)+1;
-					state.score += Math.floor(Math.random()*2);
-				} else {
-					text += '<br/>you tried to kill a monster... no luck!';
-				}
-			} break;
-			default: {
-				text += '<br/>...command not recognized...';
-			}
-		}
-		$('#status').html( text );
-	});
-	
-});
-</script>
-
-<title>Simple Game</title>
+	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/game.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="gamelogic.js"></script>
+	<title>Simple Game</title>
 </head>
+
 <body>
-	<h1>Simple Game</h1>
-	<p>
+	<div class="jumbotron text-center">
+		<div class="container">
+			<h1 class="display-4">Simple Game</h1>
+			<p>
+				<h2 class="lead">Situation</h2>
+				<hr class="my-4">
+				<div class="lead">Instructions - use these commands to play:
+					<br>SEARCH, KILL
+					<br>And QUIT to finish the game.
+				</div>
+				<div class="jumbotron text-center" id="status">...</div>
+			</p>
+			<hr />
+		</div>
+		<div id="action" class="container">
+			<div class="jumbotron text-center">
+				<b>What do you want to do? (search/kill/quit)</b>
+				<br />
+				<input class="form-control form-control-lg text-center" type="text" placeholder="Write commands here" id="userInput"></input>
+				<button class="btn btn-primary btn-lg btn-block" type="button" id="enterBtn">ENTER</button>
+			</div>
+		</div>
+	</div>
 
-		<p><h2>Situation</h2>
-        <div>Instructions - use these commands to play:
-            <br>SEARCH, KILL
-            <br>And QUIT to finish the game.
-        </div>
-		<div id="status">...</div>
-		</p>
-
-		<hr/>	
-
-		<b>What do you want to do? (search/kill/quit)</b>
-		<br/>
-		<input type="text" id="userInput"></input>
-		<button type="button" id="enterBtn">ENTER</button>
-
-	</p>
-	
 </body>
-</html>	
+
+</html>

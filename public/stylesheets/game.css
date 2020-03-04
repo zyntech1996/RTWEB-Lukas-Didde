@@ -1,0 +1,16 @@
+#status {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: cursive;
+}
+
+.jumbotron {
+    background: #532F8C;
+    color:black;
+    margin: auto; 
+}
+
+#action{
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
