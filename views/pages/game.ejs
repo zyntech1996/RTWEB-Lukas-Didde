@@ -1,13 +1,34 @@
 <html>
 <head>
 
+
 <style>
 #status {
 	height: 150px;
 }
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+//Notes for PF assignment
+//Different attack styles, each attack style damage depends on the target
+//More enemies with different attributes. Weakness (e.g. crush, slash or stab), HP, damage and exp for a kill. 
+//Room definition which includes: roomname, items (Keys, doors etc), 1-2 different enemies (1 enemy each room, diversity), distance (using tree format) - Json format
+//Change player state to a json format including: HP, EXP, Damage, lvl and inventory. 
+//Chat system firstly just single player communication.
+//Maybe implement bootstrap for structure
+//Login system using json as database
+//Json example
+/*
+{
+	"first_room": {
+		"name": "Candy Kingdom",
+		"desc": "The First Room",
+		"roomid": 1,
+		"npcnumber": 1
+	}
+}
+*/ </script>
+
 <script>
 
 $(document).ready( function() {    
