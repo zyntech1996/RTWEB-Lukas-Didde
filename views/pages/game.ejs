@@ -1,37 +1,67 @@
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/game.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="gamelogic.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Simple Game</title>
 </head>
 
 <body>
 	<div class="jumbotron text-center">
-		<div class="container">
-			<h1 class="display-4">Simple Game</h1>
-			<p>
-				<h2 class="lead">Situation</h2>
-				<hr class="my-4">
-				<div class="lead">Instructions - use these commands to play:
-					<br>SEARCH, KILL
-					<br>And QUIT to finish the game.
+		<h1 class="display-4">Adventure time</h1>
+		<h2 class="lead">MUD Game</h2>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4" id="gamecol">
+				<span class="border">
+					<h3>Instructions - use these commands to play:</h3>
+					<p>SEARCH, KILL</p>
+
+					<p>And QUIT to finish the game.</p>
+				</span>
+
+				<div id="status">...</div>
+
+				<div id="action">
+
+					<b>What do you want to do? (search/kill/quit)</b>
+					<br />
+					<input class="form-control form-control-sm text-center" type="text"
+						placeholder="Write commands here" id="userInput"></input>
+					<button class="btn btn-primary btn-sm btn-block" type="button" id="enterBtn">ENTER</button>
+
 				</div>
-				<div class="jumbotron text-center" id="status">...</div>
-			</p>
-			<hr />
-		</div>
-		<div id="action" class="container">
-			<div class="jumbotron text-center">
-				<b>What do you want to do? (search/kill/quit)</b>
-				<br />
-				<input class="form-control form-control-lg text-center" type="text" placeholder="Write commands here" id="userInput"></input>
-				<button class="btn btn-primary btn-lg btn-block" type="button" id="enterBtn">ENTER</button>
+			</div>
+			<div class="col-sm-4" id="col1">
+				<h3>Login</h3>
+				<div id="login">
+					<ul>
+						<li>
+							<input id="username" type="text" placeholder="Username"></input>
+						</li>
+						<li>
+							<input id="password" type="text" placeholder="Password"></input>
+						</li>
+						<li>
+							<button class="btn btn-primary" type="button" id="loginBtn">Login</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-3" id="col2">
+				<h3>Column 1</h3>
+				<p>Lorem ipsum dolor..</p>
 			</div>
 		</div>
-	</div>
+
 
 </body>
 
