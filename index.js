@@ -7,6 +7,7 @@ var MongoStore = require('connect-mongo')(session);
 var router = require('./router');
 const path = require('path');
 var userRoutes = require('./routes');
+const PORT = process.env.PORT || 5000
 
 
 //connect to MongoDB
@@ -59,7 +60,7 @@ app.use(function (err, req, res, next) {
 });
 
 // listen on port 3000
-app.listen(3000, function () {
+app.listen(PORT, function () {
     console.log('Express app listening on port 3000');
 });
 /*const express = require('express')
