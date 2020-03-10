@@ -1,2 +1,16 @@
-[{"username":"Andrea666","bestScore":0},
-{"username":"iSuck001","bestScore":3}]
+[{
+        "username": "Andrea666",
+        "character":"Gandolf",
+        "bestScore": 0
+    },
+    {
+        "username": "iSuck001",
+        "character":"Dumbledore",
+        "bestScore": 3
+    },
+    {
+        "username": "lukas",
+        "character":"Sargares",
+        "bestScore": 3
+    }
+]

@@ -19,50 +19,101 @@
 	}
 }
 */
-//const db = require('./mongoDataBase');
-/*var dbo = db.db("UserDBMudGame");
-  var myobj = { name: "Lukas", character: "zyntech" };
-  dbo.collection("UserDB").insertOne(myobj, function(err, res) {
-	if (err) throw err;
-	)};
-
-	$('#loginBtn').click(()=>{
-		$('#username').text() = username;
-		console.log(username);
-		$('#password').text() = password;
-		console.log(password);
-	)};
-	
-	
-	*/
 
 
 $(document).ready(function () {
-	
-	let playerName = prompt('Please player, enter you name:', 'Andrea666');
-	
-	//let playerPassword = prompt('Please enter password: ', ' ');
-	$('#loginBtn').click(function(){
-		let username = "";
-		let password = "";
-		console.log("test");
-		/*$('#Username').val() = username;
-		console.log(username);
-		$('#Password').val() = password;
-		console.log(password);*/
-	});
 
-	// initial state of the game
+	let uslocal = localStorage.getItem('Username');
+	let value2 = "";
+	//let playerName = prompt('Please enter character name: ');
+	//$('#localSBtn').click(function () {
+
+	if (localStorage.getItem('Username') == null) {
+		console.log('No Item In LocalStorage!');
+		localStorage.clear();
+	} else {
+		$.getJSON("/highscores.json", function (data) {
+			Object.keys(data).forEach(function (key) {
+
+				let value = data[key];
+				//Object.keys = Object_keys;
+				//let value2;
+				let value1 = value["username"];
+				value2 = value1["character"];
+				return value2
+				//return value2;
+				/*
+				for (val in value) {
+					
+				}*/
+				//return value2;
+
+
+				//return data;
+
+			})
+			/*
+			var hasOwn = Object.prototype.hasOwnProperty;
+			Object.keys(data).forEach(function(key){
+				var value = data[key];
+				if(data[key] == "username"){
+					console.log(value)
+				}*/
+			//return value2;
+			//console.log(value2);
+
+		});
+		/*
+		console.log('the result:', JSON.stringify(data));
+		console.log(typeof(data));
+		var json = JSON.stringify(data);
+		console.log(json);
+		console.log(data);
+		var json1 = data[username];
+		console.log(json1.username);
+		let data1 = JSON.stringify(data);
+		console.log(typeof uslocal, uslocal);*/
+		//return console.log(value2);
+		//return value2;
+
+	};
+	//var ruten = 
+	console.log(value2);
+	//var func1 = new func();
+	//let lol = func1.func2();
+	//console.log(func1.func2())
+
+
+	$('#localBtn').click(function () {
+		$.post('/highscores.json', function (data) {
+			let state = {
+				username: "",
+				hp: 100,
+				xp: 0,
+				score: 0
+			};
+
+			//JSON.parse(data);
+			console.log(data);
+		});
+
+	});
+	$('#logout').click(function () {
+		localStorage.clear();
+	})
+
 	let state = {
-		username:"",
+		username: "",
 		hp: 100,
 		xp: 0,
 		score: 0
 	};
-	state.username += playerName;
-	//var dbo = db.db("UserDataBase");
-	
 
+	let playerName = "lol";
+	//console.log(func());
+	//console.log(func());
+	console.log(playerName);
+	playerName += state.username;
 
 	let gameIsRunning = true;
 
@@ -145,5 +196,5 @@ old = ${scoreValue} ; new = ${state.score}`);
 		}
 		$('#status').html(text);
 	});
-//module.exports = game;
+
 });

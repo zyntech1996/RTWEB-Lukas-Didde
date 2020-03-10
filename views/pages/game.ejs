@@ -6,7 +6,7 @@
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/game.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="gamelogic.js"></script>
+	<script src="/public/js/gamelogic.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Simple Game</title>
@@ -40,23 +40,17 @@
 
 				</div>
 			</div>
-			<div class="col-sm-4" id="col1">
-				<h3>Login</h3>
-				<div id="login">
-					<ul>
-						<li>
-							<input id="username" type="text" placeholder="Username"></input>
-						</li>
-						<li>
-							<input id="password" type="text" placeholder="Password"></input>
-						</li>
-						<li>
-							<button class="btn btn-primary" type="button" id="loginBtn">Login</button>
-						</li>
-					</ul>
-				</div>
-			</div>
 			<div class="col-sm-3" id="col2">
+				<br><a type="button" href="/logout" id="logout">Logout</a>
+
+				<br><div class="login-form">
+					<form id="getREQ" >
+						<input id="localSBtn" type="button" value="get" class="btn btn-info btn-md">
+					</form>
+					<form>
+						<input id="localBtn" type="button" value="post" class="btn btn-info btn-md">
+					</form>
+				</div>
 				<h3>Column 1</h3>
 				<p>Lorem ipsum dolor..</p>
 			</div>
