@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node testserver.js",
+    "start": "node index.js",
     "test": "node test.js"
   },
   "dependencies": {
@@ -21,7 +21,8 @@
     "mongo": "^0.1.0",
     "mongodb": "^3.5.4",
     "mongoose": "^5.9.3",
-    "node-localstorage": "^2.1.5"
+    "node-localstorage": "^2.1.5",
+    "nodemon": "^2.0.2"
   },
   "devDependencies": {
     "request": "^2.81.0",

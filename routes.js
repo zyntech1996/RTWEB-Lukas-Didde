@@ -6,7 +6,7 @@ var app = express();
 const userRoutes = (app, fs) => {
 
     // variables
-    const dataPath = '/highscores.json';
+    //const dataPath = '/highscores.json';
 
     // READ
     app.get('/highscores.js', (req, res) => {

@@ -19,82 +19,99 @@
 	}
 }
 */
-
+var value2 = [];
+let playerName = "";
+let state = {
+	username: "",
+	hp: 100,
+	xp: 0,
+	score: 0
+};
 
 $(document).ready(function () {
 
 	let uslocal = localStorage.getItem('Username');
-	let value2 = "";
+	var bool = false;
 	//let playerName = prompt('Please enter character name: ');
 	//$('#localSBtn').click(function () {
-
-	if (localStorage.getItem('Username') == null) {
-		console.log('No Item In LocalStorage!');
-		localStorage.clear();
-	} else {
-		$.getJSON("/highscores.json", function (data) {
-			Object.keys(data).forEach(function (key) {
-
-				let value = data[key];
-				//Object.keys = Object_keys;
-				//let value2;
-				let value1 = value["username"];
-				value2 = value1["character"];
-				return value2
-				//return value2;
-				/*
-				for (val in value) {
+	
+	
+function asyncGetName(callback){
+	//setTimeout(function(){
+		if (localStorage.getItem('Username') == null) {
+			console.log('No Item In LocalStorage!');
+			localStorage.clear();
+		}else {
+			$.getJSON("/highscores.json", function (data) {
+				//console.log(data)
+				Object.keys(data).forEach(function (key) {
+	
+					let value = data[key];
+					if (value["username"] == uslocal) {
+						bool = true;
+						console.log(bool, value.character);
+						//value2.push(value);
+						//return value2;
+						playerName += value.character;
+						console.log("playerName ", playerName);
+						callback(playerName)
+	
+					}
 					
-				}*/
-				//return value2;
-
-
-				//return data;
-
+				})
+				
 			})
-			/*
-			var hasOwn = Object.prototype.hasOwnProperty;
-			Object.keys(data).forEach(function(key){
-				var value = data[key];
-				if(data[key] == "username"){
-					console.log(value)
-				}*/
-			//return value2;
-			//console.log(value2);
-
-		});
-		/*
-		console.log('the result:', JSON.stringify(data));
-		console.log(typeof(data));
-		var json = JSON.stringify(data);
-		console.log(json);
-		console.log(data);
-		var json1 = data[username];
-		console.log(json1.username);
-		let data1 = JSON.stringify(data);
-		console.log(typeof uslocal, uslocal);*/
-		//return console.log(value2);
-		//return value2;
+		}
+		
+		//callback(playerName);
+	//}, Math.random() * 2000)
+	
 
 	};
-	//var ruten = 
-	console.log(value2);
-	//var func1 = new func();
-	//let lol = func1.func2();
-	//console.log(func1.func2())
+	/*
+	// 1. Call helloCatAsync passing a callback function,
+	//    which will be called receiving the result from the async operation
+	console.log("1. function called...")
+	helloCatAsync(function (result) {
+		// 5. Received the result from the async function,
+		//    now do whatever you want with it:
+		console.log("5. result is: ", result);
+	});
+
+	// 2. The "callback" parameter is a reference to the function which
+	//    was passed as argument from the helloCatAsync call
+	function helloCatAsync(callback) {
+		console.log("2. callback here is the function passed as argument above...")
+		// 3. Start async operation:
+		setTimeout(function () {
+			console.log("3. start async operation...")
+			console.log("4. finished async operation, calling the callback, passing the result...")
+			// 4. Finished async operation,
+			//    call the callback passing the result as argument
+			callback('Nya');
+		}, Math.random() * 2000);
+	}*/
+
+	//function getName()
+
+	asyncGetName(function (results) {
+		console.log("result is: ", results)
+		playerName = results;
+		state.username += playerName;
+		$('#status').html('Initial status: ' + JSON.stringify(state));
+		console.log(playerName);
+
+	});
+	//console.log(playerName);
+		//console.log("value: " + value);
+	//console.log("Value 2 array: " + value2);
 
 
 	$('#localBtn').click(function () {
 		$.post('/highscores.json', function (data) {
-			let state = {
-				username: "",
-				hp: 100,
-				xp: 0,
-				score: 0
-			};
 
 			//JSON.parse(data);
-			console.log(data);
+			//console.log(data);
 		});
 
 	});
@@ -102,23 +119,18 @@ $(document).ready(function () {
 		localStorage.clear();
 	})
 
-	let state = {
-		username: "",
-		hp: 100,
-		xp: 0,
-		score: 0
-	};
 
-	let playerName = "lol";
+
+
 	//console.log(func());
 	//console.log(func());
-	console.log(playerName);
-	playerName += state.username;
+	//console.log(getName());
+	//playerName += state.username;
 
 	let gameIsRunning = true;
 
 	// the display that will show what happens
-	$('#status').html('Initial status: ' + JSON.stringify(state));
+	
 
 	function quit() {
 		$('#status').html('You logged out! ' +
